@@ -13,12 +13,47 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('applicants', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->enum('gender', ['male', 'female']);
+            $table->date('dob');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->bigIncrements('address_id');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('admin', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->enum('gender', ['male', 'female']);
+            $table->date('dob');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('government_officials', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->enum('gender', ['male', 'female']);
+            $table->date('dob');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->bigIncrements('created_by');
+            $table->bigIncrements('address_id');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -31,6 +66,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('applicants');
+        Schema::dropIfExists('admin');
+        Schema::dropIfExists('government_officials');
     }
 }
