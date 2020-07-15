@@ -21,8 +21,8 @@ class CreatePermissionsTable extends Migration
         });
 
         Schema::create('business_type_permission', function (Blueprint $table) {
-            $table->bigIncrements('business_type_id');
-            $table->bigIncrements('permission_id');
+            $table->bigInteger('business_type_id');
+            $table->bigInteger('permission_id');
         });
     }
 

@@ -21,10 +21,13 @@ Route::get('/admin/login', function () {
     return view('admin.auth.login');
 });
 
-Route::get('/applicant/login', function () {
+Route::get('/applicants/login', function () {
     return view('applicant.auth.login');
 });
 
-Auth::routes();
+
+Route::get('/applicants/register', 'Applicants\RegistrationController@showRegistrationForm')->name('applicants.register');
+Route::post('/applicants/register', 'Applicants\RegistrationController@register');
+//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

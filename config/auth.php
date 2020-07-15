@@ -14,8 +14,8 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
-        'passwords' => 'users',
+        'guard' => 'web_applicant',
+        'passwords' => 'applicants',
     ],
 
     /*
@@ -36,9 +36,19 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'web_applicant' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'applicants',
+        ],
+
+        'web_admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
+        'web_government_official' => [
+            'driver' => 'session',
+            'provider' => 'government_official',
         ],
 
         'api' => [
@@ -73,12 +83,12 @@ return [
 
         'government_officials' => [
             'driver' => 'eloquent',
-            'model' => App\Admin::class,
+            'model' => App\GovernmentOfficial::class,
         ],
 
         'applicants' => [
             'driver' => 'eloquent',
-            'model' => App\Admin::class,
+            'model' => App\Applicant::class,
         ],
 
 
@@ -111,13 +121,13 @@ return [
             'throttle' => 60,
         ],
         'government_officials' => [
-            'provider' => 'admins',
+            'provider' => 'government_official',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
         'applicants' => [
-            'applicants' => 'admins',
+            'provider' => 'applicants',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

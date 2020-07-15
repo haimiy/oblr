@@ -22,14 +22,14 @@ class CreateSectorsTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigIncrements('sector_id');
+            $table->bigInteger('sector_id');
             $table->timestamps();
         });
 
         Schema::create('business_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigIncrements('categories_id');
+            $table->bigInteger('categories_id');
             $table->timestamps();
         });
     }

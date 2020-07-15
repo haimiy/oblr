@@ -15,8 +15,8 @@ class CreateLicensesTable extends Migration
     {
         Schema::create('licenses', function (Blueprint $table) {
             $table->string('license_number');
-            $table->bigIncrements('business_type_id');
-            $table->bigIncrements('entity_id');
+            $table->bigInteger('business_type_id');
+            $table->bigInteger('entity_id');
             $table->timestamps();
         });
 
@@ -24,7 +24,7 @@ class CreateLicensesTable extends Migration
             $table->id();
             $table->date('date_of_issue');
             $table->date('expiry_date');
-            $table->bigIncrements('application_id');
+            $table->bigInteger('application_id');
             $table->timestamps();
         });
     }

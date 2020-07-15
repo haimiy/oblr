@@ -1,94 +1,102 @@
-<!doctype html>
-<html lang="en">
+@extends('auth.layout')
 
-<head>
-    <meta charset="utf-8" />
-    <title>Register | Qovex - Responsive Bootstrap 4 Admin Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
-    <meta content="Themesbrand" name="author" />
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+@section('title', 'Applicant Register')
 
-    <!-- Bootstrap Css -->
-    <link href="assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
-    <!-- Icons Css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <!-- App Css-->
-    <link href="assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+@section('form')
 
-</head>
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form class="form-horizontal" method="post" action="{{ route('applicants.register') }}">
+        @csrf
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Enter first_name">
+                </div>
+            </div>
 
-<body>
-    <div class="home-btn d-none d-sm-block">
-        <a href="index.html" class="text-dark"><i class="fas fa-home h2"></i></a>
-    </div>
-    <div class="account-pages my-5 pt-sm-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card overflow-hidden">
-                        <div class="bg-login text-center">
-                            <div class="bg-login-overlay"></div>
-                            <div class="position-relative">
-                                <h5 class="text-white font-size-20">Free Register</h5>
-                                <p class="text-white-50 mb-0">Get your free Qovex account now</p>
-                                <a href="index.html" class="logo logo-admin mt-4">
-                                    <img src="assets/images/logo-sm-dark.png" alt="" height="30">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="card-body pt-5">
-
-                            <div class="p-2">
-                                <form class="form-horizontal" action="index.html">
-
-                                    <div class="form-group">
-                                        <label for="useremail">Email</label>
-                                        <input type="email" class="form-control" id="useremail" placeholder="Enter email">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="username">Username</label>
-                                        <input type="text" class="form-control" id="username" placeholder="Enter username">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="userpassword">Password</label>
-                                        <input type="password" class="form-control" id="userpassword" placeholder="Enter password">
-                                    </div>
-
-                                    <div class="mt-4">
-                                        <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Register</button>
-                                    </div>
-
-                                    <div class="mt-4 text-center">
-                                        <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="mt-5 text-center">
-                        <p>Already have an account ? <a href="pages-login.html" class="font-weight-medium text-primary"> Login</a> </p>
-                        <p>© 2020 Qovex. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                    </div>
-
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Enter last_name">
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- JAVASCRIPT -->
-    <script src="assets/libs/jquery/jquery.min.js"></script>
-    <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/libs/metismenu/metisMenu.min.js"></script>
-    <script src="assets/libs/simplebar/simplebar.min.js"></script>
-    <script src="assets/libs/node-waves/waves.min.js"></script>
 
-    <script src="assets/js/app.js"></script>
 
-</body>
+        <div class="form-group">
+            <label for="phone">Phone number</label>
+            <input type="phone" name="phone" class="form-control" id="phone" placeholder="Enter phone number">
+        </div>
 
-</html>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email" placeholder="Enter email address">
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="gender">Gender</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-check mb-2">
+                                <label class="form-check-label" for="gender">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender" value="male" checked="">
+                                    Male
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-check mb-2">
+                                <label class="form-check-label" for="gender1">
+                                    <input class="form-check-input" type="radio" name="gender" id="gender1" value="female">
+                                    Female
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="birthdate">Birthdate</label>
+                    <input name="dob" class="form-control" type="date" value="2019-08-19" id="birthdate">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="password_confirmation">Confirm Password</label>
+                    <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" placeholder="Enter password">
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <button class="btn btn-primary btn-block waves-effect waves-light" type="submit">Register</button>
+        </div>
+
+        <div class="mt-4 text-center">
+            <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p>
+        </div>
+    </form>
+@endsection

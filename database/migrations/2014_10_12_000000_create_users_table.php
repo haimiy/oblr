@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigIncrements('address_id');
+            $table->bigInteger('address_id');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -52,8 +52,8 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->bigIncrements('created_by');
-            $table->bigIncrements('address_id');
+            $table->bigInteger('created_by');
+            $table->bigInteger('address_id');
             $table->rememberToken();
             $table->timestamps();
         });

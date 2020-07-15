@@ -15,6 +15,36 @@ class CreateApplicationsTable extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('applicant_id');
+            $table->bigInteger('entity_type_id');
+            $table->bigInteger('business_type_id');
+            $table->boolean('status');
+            $table->enum('application_type', ['new', 'renewal']);
+            $table->text('comment');
+            $table->timestamps();
+        });
+
+        Schema::create('applicant_details', function (Blueprint $table) {
+            $table->id();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->enum('gender', ['male', 'female']);
+            $table->date('dob');
+            $table->string('nationality');
+            $table->bigInteger('address_id');
+            $table->bigInteger('application_id');
+            $table->timestamps();
+        });
+
+        Schema::create('business_details', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('phone')->unique();
+            $table->bigInteger('address_id');
+            $table->bigInteger('application_id');
+            $table->enum('address_status', ['surveyed', 'un-surveyed']);
             $table->timestamps();
         });
     }
