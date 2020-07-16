@@ -21,13 +21,26 @@ Route::get('/admin/login', function () {
     return view('admin.auth.login');
 });
 
-Route::get('/applicants/login', function () {
-    return view('applicant.auth.login');
+/** Applicant Routes **/
+Route::prefix('applicants')->group(function (){
+
+    /** Applicant Auth **/
+    //register
+    Route::get('/applicants/register', 'Applicants\RegistrationController@showRegistrationForm')->name('applicants.register');
+    Route::post('/applicants/register', 'Applicants\RegistrationController@register');
+    //loin
+    Route::get('login', 'Applicants\LoginController@showLoginForm')->name('applicants.login');
+    Route::post('login','Applicants\LoginController@login')->name('applicants.login');
+    //logout
+    Route::get('logout', 'Applicants\LoginController@logout')->name('applicants.logout');
+
+    /** Auth routes **/
+    Route::middleware(['auth'])->group(function (){
+        /** Applicant Home **/
+        Route::get('home','Applicants\HomeController@showApplicantHome')->name('applicants.home');
+    });
 });
 
-
-Route::get('/applicants/register', 'Applicants\RegistrationController@showRegistrationForm')->name('applicants.register');
-Route::post('/applicants/register', 'Applicants\RegistrationController@register');
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -1,11 +1,11 @@
 <div class="form-group">
     <label for="email">Email</label>
-    <input type="text" class="form-control" id="email" placeholder="Enter email">
+    <input type="text" name="email" class="form-control" id="email" placeholder="Enter email">
 </div>
 
 <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" placeholder="Enter password">
+    <input type="password" name="password" class="form-control" id="password" placeholder="Enter password">
 </div>
 
 <div class="custom-control custom-checkbox">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Applicants;
 use App\Admin;
 use App\Applicant;
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,7 @@ class RegistrationController extends Controller
 {
     use RegistersUsers;
 
-    protected $redirectTo = 'applicants/home';
+    protected $redirectTo = RouteServiceProvider::APPLICANTS_HOME;
 
     public function __construct()
     {
