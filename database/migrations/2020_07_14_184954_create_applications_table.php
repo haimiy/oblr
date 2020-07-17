@@ -18,6 +18,8 @@ class CreateApplicationsTable extends Migration
             $table->bigInteger('applicant_id');
             $table->bigInteger('entity_type_id');
             $table->bigInteger('business_type_id');
+            $table->bigInteger('applicant_details_id');
+            $table->bigInteger('business_details_id');
             $table->boolean('status');
             $table->enum('application_type', ['new', 'renewal']); //need license no
             $table->text('comment');
@@ -43,7 +45,6 @@ class CreateApplicationsTable extends Migration
             $table->string('name');
             $table->string('phone')->unique();
             $table->bigInteger('address_id');
-            $table->bigInteger('application_id');
             $table->enum('address_status', ['surveyed', 'un-surveyed']);
             $table->timestamps();
         });
@@ -57,6 +58,7 @@ class CreateApplicationsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('applications');
+        Schema::dropIfExists('applicant_details');
         Schema::dropIfExists('business_details');
     }
 }

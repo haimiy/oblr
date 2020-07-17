@@ -17,11 +17,14 @@ class CreateLicensesTable extends Migration
             $table->string('license_number');
             $table->bigInteger('business_type_id');
             $table->bigInteger('entity_id');
+            $table->bigInteger('applicant_details_id');
+            $table->bigInteger('business_details_id');
             $table->timestamps();
         });
 
         Schema::create('licenses_history', function (Blueprint $table) {
             $table->id();
+            $table->string('license_number');
             $table->date('date_of_issue');
             $table->date('expiry_date');
             $table->bigInteger('application_id');
