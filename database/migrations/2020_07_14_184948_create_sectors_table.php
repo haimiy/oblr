@@ -29,7 +29,7 @@ class CreateSectorsTable extends Migration
         Schema::create('business_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('categories_id');
+            $table->bigInteger('category_id');
             $table->timestamps();
         });
     }

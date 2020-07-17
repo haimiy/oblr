@@ -67,7 +67,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('applicants');
-        Schema::dropIfExists('admin');
+        Schema::dropIfExists('admins');
         Schema::dropIfExists('government_officials');
     }
 }

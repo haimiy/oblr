@@ -13,7 +13,7 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
-        Schema::create('district', function (Blueprint $table) {
+        Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->bigInteger('region_id');
@@ -36,5 +36,6 @@ class CreateAddressesTable extends Migration
     {
         Schema::dropIfExists('addresses');
         Schema::dropIfExists('regions');
+        Schema::dropIfExists('districts');
     }
 }

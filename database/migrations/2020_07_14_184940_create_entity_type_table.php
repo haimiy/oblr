@@ -13,7 +13,7 @@ class CreateEntityTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('entity_type', function (Blueprint $table) {
+        Schema::create('entity_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateEntityTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('entity_type');
+        Schema::dropIfExists('entity_types');
     }
 }
