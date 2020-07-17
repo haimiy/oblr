@@ -19,7 +19,7 @@ class CreateApplicationsTable extends Migration
             $table->bigInteger('entity_type_id');
             $table->bigInteger('business_type_id');
             $table->boolean('status');
-            $table->enum('application_type', ['new', 'renewal']);
+            $table->enum('application_type', ['new', 'renewal']); //need license no
             $table->text('comment');
             $table->timestamps();
         });
@@ -57,5 +57,6 @@ class CreateApplicationsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('applications');
+        Schema::dropIfExists('business_details');
     }
 }

@@ -1,6 +1,6 @@
 @extends('applicant.layouts.applicant_main')
 
-@section('title','All License Application Requests')
+@section('title','Pending License Application Requests')
 @section('page-content')
     <div class="page-content">
 
@@ -12,7 +12,7 @@
 
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item active">All License Application Requests</li>
+                            <li class="breadcrumb-item active">Pending License Application Requests</li>
                         </ol>
                     </div>
 
@@ -26,13 +26,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="card-title">All License Application</h4>
-                        <div class="col-md-12">
-                            <a href="{{route('applicants.applications.request')}}" class="float-right btn btn-primary"><i class="mdi mdi mdi mdi-folder-edit-outline"></i> Request License</a>
-                        </div>
-
-                        <p class="card-title-desc">The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
-                        </p>
+                        <h4 class="card-title">Pending License Application Request</h4>
 
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>

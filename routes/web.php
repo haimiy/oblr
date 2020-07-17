@@ -26,8 +26,8 @@ Route::prefix('applicants')->group(function (){
 
     /** Applicant Auth **/
     //register
-    Route::get('/applicants/register', 'Applicants\RegistrationController@showRegistrationForm')->name('applicants.register');
-    Route::post('/applicants/register', 'Applicants\RegistrationController@register');
+    Route::get('register', 'Applicants\RegistrationController@showRegistrationForm')->name('applicants.register');
+    Route::post('register', 'Applicants\RegistrationController@register');
     //loin
     Route::get('login', 'Applicants\LoginController@showLoginForm')->name('applicants.login');
     Route::post('login','Applicants\LoginController@login')->name('applicants.login');
@@ -38,6 +38,15 @@ Route::prefix('applicants')->group(function (){
     Route::middleware(['auth'])->group(function (){
         /** Applicant Home **/
         Route::get('home','Applicants\HomeController@showApplicantHome')->name('applicants.home');
+
+        Route::get('licenses','LicenseController@showAllApplicantLicense')->name('applicants.licenses');
+
+        Route::get('applications','ApplicationController@showAllApplicantApplicationRequest')->name('applicants.applications');
+        Route::get('applications/request','ApplicationController@showApplicantApplicationRequestForm')->name('applicants.applications.request');
+        Route::get('applications/pending','ApplicationController@showAllApplicantPendingApplicationRequest')->name('applicants.applications.pending');
+        Route::get('applications/fail','ApplicationController@showAllApplicantFailApplicationRequest')->name('applicants.applications.fail');
+
+        Route::get('profile','Applicants\ApplicantsController@showApplicantProfileSetting')->name('applicants.profile');
     });
 });
 
