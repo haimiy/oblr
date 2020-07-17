@@ -16,7 +16,8 @@ class CreatePermissionsTable extends Migration
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description');
+            $table->string('issuing_agency');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
 
@@ -34,5 +35,6 @@ class CreatePermissionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('permissions');
+        Schema::dropIfExists('business_type_permission');
     }
 }

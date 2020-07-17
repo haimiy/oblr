@@ -60,5 +60,6 @@ class CreateApplicationsTable extends Migration
         Schema::dropIfExists('applications');
         Schema::dropIfExists('applicant_details');
         Schema::dropIfExists('business_details');
+        Schema::dropIfExists('applicant_details');
     }
 }
