@@ -38,5 +38,19 @@ class DistrictsTableSeeder extends Seeder
 
         District::create(['region_id' => 2, 'name' => 'Ubungo']);
 
+        //Dodoma
+        District::create(['region_id' => 3, 'name' => 'Bahi']);
+
+        District::create(['region_id' => 3, 'name' => 'Chamwino']);
+
+        District::create(['region_id' => 3, 'name' => 'Chemba']);
+
+        District::create(['region_id' => 3, 'name' => 'Dodoma']);
+
+        District::create(['region_id' => 3, 'name' => 'Kondoa']);
+
+        District::create(['region_id' => 3, 'name' => 'Kongwa']);
+
+        District::create(['region_id' => 3, 'name' => 'Mpwapwa']);
     }
 }

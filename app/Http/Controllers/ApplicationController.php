@@ -44,8 +44,14 @@ class ApplicationController extends Controller
         return response()->json(['districts'=>$district]);
     }
 
-    public function ajaxLoadBusinessTypePermit($business_type_id){
-        
+    public function ajaxLoadBusinessTypePermissions($business_type_id){
+        $business_type =BusinessType::find($business_type_id);
+        if ($business_type != null)
+        {
+            $permissions = BusinessType::find($business_type_id)->permissions;
+            return response()->json(['permissions'=>$permissions]);
+        }
+        return null;
     }
 
 }

@@ -50,8 +50,9 @@ Route::prefix('applicants')->group(function (){
 
         Route::prefix('ajax')->group(function (){
             Route::get('sector/{sector_id}/categories','ApplicationController@ajaxLoadSectorCategories' );
-            Route::get('category/{category_id}/business_type','ApplicationController@ajaxLoadCategoryBusinessTypes' );
-            Route::get('region/{region_id}/districts','ApplicationController@ajaxLoadRegionDistricts' );
+            Route::get('categories/{category_id}/business_types','ApplicationController@ajaxLoadCategoryBusinessTypes' );
+            Route::get('regions/{region_id}/districts','ApplicationController@ajaxLoadRegionDistricts' );
+            Route::get('business_types/{business_type_id}/permissions','ApplicationController@ajaxLoadBusinessTypePermissions' );
         });
     });
 });

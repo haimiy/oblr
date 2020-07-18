@@ -343,7 +343,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div id="permit" class="col-md-6">
                                         <div class="form-group row">
                                             <label for="permit_doc" class="col-lg-3 col-form-label">Permit</label>
                                             <div class="col-lg-9">
@@ -407,6 +407,9 @@
             $('#sector_id').change(function () {
                 var  sector_id =$('#sector_id').val();
                 var category = $(category_id);
+
+                $('#permit').html('');
+
                 if(sector_id >= 1){
                     loadSectorCategories(sector_id,category);
                 }
@@ -437,6 +440,8 @@
                 var category_id = $('#category_id').val();
                 var business_type = $('#business_type_id');
 
+                $('#permit').html('');
+
                 if(category_id >= 1){
                     loadCategoryBusinessTypes(category_id,business_type);
                 }
@@ -447,8 +452,7 @@
             function  loadCategoryBusinessTypes(id,business_type) {
                 business_type.html('<option>--Please Select Business Type--</option>');
 
-                $.get('/applicants/ajax/category/'+id+'/business_type',function (data) {
-                    console.log(data.category_business_types);
+                $.get('/applicants/ajax/categories/'+id+'/business_types',function (data) {
                     var category_business_types =data.category_business_types;
                     for(var i in category_business_types)
                     {
@@ -457,6 +461,51 @@
                     }
                 });
             }
+
+            //load business type permission
+            $('#business_type_id').change(function () {
+                var business_type_id = $('#business_type_id').val();
+                var permit = $('#permit');
+
+                if(business_type_id >= 1){
+                    loadBusinessTypePermissions(business_type_id,permit);
+                }
+                else{
+                    permit.html('');
+                }
+
+
+            });
+             function loadBusinessTypePermissions(business_type_id,permit){
+                 permit.html('');
+
+                 $.get('/applicants/ajax/business_types/'+business_type_id+'/permissions',function (data) {
+                     if (data != "")
+                     {
+                         var permissions =data.permissions;
+                         if (permissions.length > 0)
+                         {
+                             permit.html('' +
+                                 '<div class="form-group row">' +
+                                 ' <label for="permit_doc" class="col-lg-3 col-form-label">Permit('+permissions[0].name+')</label> ' +
+                                 '<div class="col-lg-9"> ' +
+                                 '<div class="custom-file">' +
+                                 ' <input type="file" name="permit_doc" class="custom-file-input" id="permit_doc">' +
+                                 ' <label class="custom-file-label float-left" for="permit_doc">Choose file</label>' +
+                                 ' </div>' +
+                                 ' </div> ' +
+                                 '</div>');
+                         }
+                         else{
+                             permit.html('');
+                         }
+                     }
+                     else{
+                         permit.html('');
+                     }
+
+                 })
+             }
 
             //load applicant region district
             $('#applicant_region').change(function () {
@@ -473,7 +522,7 @@
             function ajaxLoadRegionDistrict(region_id,district) {
                 district.html('<option>--Please Select District--</option>');
 
-                $.get('/applicants/ajax/region/'+region_id+'/districts',function (data) {
+                $.get('/applicants/ajax/regions/'+region_id+'/districts',function (data) {
                     var districts = data.districts;
 
                     for (var index in districts){
@@ -497,7 +546,7 @@
             function ajaxLoadRegionDistrict(region_id,district) {
                 district.html('<option>--Please Select District--</option>');
 
-                $.get('/applicants/ajax/region/'+region_id+'/districts',function (data) {
+                $.get('/applicants/ajax/regions/'+region_id+'/districts',function (data) {
                     var districts = data.districts;
 
                     for (var index in districts){
