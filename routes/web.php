@@ -47,6 +47,12 @@ Route::prefix('applicants')->group(function (){
         Route::get('applications/fail','ApplicationController@showAllApplicantFailApplicationRequest')->name('applicants.applications.fail');
 
         Route::get('profile','Applicants\ApplicantsController@showApplicantProfileSetting')->name('applicants.profile');
+
+        Route::prefix('ajax')->group(function (){
+            Route::get('sector/{sector_id}/categories','ApplicationController@ajaxLoadSectorCategories' );
+            Route::get('category/{category_id}/business_type','ApplicationController@ajaxLoadCategoryBusinessTypes' );
+            Route::get('region/{region_id}/districts','ApplicationController@ajaxLoadRegionDistricts' );
+        });
     });
 });
 

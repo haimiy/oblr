@@ -12,16 +12,19 @@ class PermissionTableSeeder extends Seeder
     public function run()
     {
         $permissions = collect([
-            ['name' => 'Approval Letter from Health Officer	', 'issuing_agency' => 'Town Planner Office'],
-            ['name' => 'CRB License	', 'issuing_agency' => 'Contractors Registration Board'],
-            ['name' => 'Permit from the Regulatory Bodies', 'issuing_agency' => 'Regulatory Bodies'],
+            ['name' => 'Approval Letter from Health Officer	', 'issuing_agency' => 'Town Planner Office','description'=>'Letter of approval from the Town / Municipal Health Officer'],
+            ['name' => 'CRB License	', 'issuing_agency' => 'Contractors Registration Board','description'=>'License issued by the Contractors Registration Board'],
+            ['name' => 'Permit from the Regulatory Bodies', 'issuing_agency' => 'Regulatory Bodies','description'=>'License issued by the Contractors Registration Board'],
+            ['name' => 'Permit from Ministry of Education', 'issuing_agency' => 'Ministry of Education and Vocation Training','description'=>'Permit issued by Ministry of Education and Vocation Training'],
         ]);
 
         foreach ($permissions as $permission){
-            \App\BusinessType::create([
-                'sector_id' => $permission['name'],
-                'name' => $permission['issuing_agency']
+            \App\Permission::create([
+                'name' => $permission['name'],
+                'issuing_agency' => $permission['issuing_agency'],
+                'description' => $permission['description']
             ]);
         }
+
     }
 }

@@ -53,7 +53,10 @@ class BusinessTypesSeeder extends Seeder
             ['category_id' => 8, 'name' => 'Nursery Schools'],
 
             //['sector_id' => 9, 'name' => 'Schools and Colleges'],
-            ['category_id' => 9, 'name' => 'Schools and Colleges'],
+            ['category_id' => 9, 'name' => 'Private College'],
+            ['category_id' => 9, 'name' => 'Private Primary School-Foreign'],
+            ['category_id' => 9, 'name' => 'Private Primary School'],
+            ['category_id' => 9, 'name' => 'Private Secondary school'],
 
             //['sector_id' => 10, 'name' => 'Duplicate License'],
             ['category_id' => 10, 'name' => 'Duplicate License'],

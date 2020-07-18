@@ -75,6 +75,9 @@
                                             <div class="col-lg-9">
                                                 <select id="entity_type" name="entity_type" class="form-control">
                                                     <option value="">--Please Select Entity type--</option>
+                                                    @foreach($entity_types as $entity_type)
+                                                        <option value="{{ $entity_type->id }}">{{ $entity_type->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -85,6 +88,9 @@
                                             <div class="col-lg-9">
                                                 <select id="sector_id" name="sector_id" class="form-control">
                                                     <option value="">--Please Select Sector--</option>
+                                                    @foreach($sectors as $sector)
+                                                        <option value="{{ $sector->id }}">{{ $sector->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -96,7 +102,7 @@
                                             <label for="category_id" class="col-lg-3 col-form-label">Category</label>
                                             <div class="col-lg-9">
                                                 <select id="category_id" name="category_id" class="form-control">
-                                                    <option value="">--Please Select Category--</option>
+                                                    <option>--Please Select Category--</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -203,6 +209,9 @@
                                             <div class="col-lg-9">
                                                 <select id="applicant_region" name="applicant_region_id" class="form-control">
                                                     <option value="">--Please Select Region--</option>
+                                                    @foreach($regions as $region)
+                                                        <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -253,7 +262,10 @@
                                             <label for="business_region" class="col-lg-3 col-form-label">Region</label>
                                             <div class="col-lg-9">
                                                 <select id="business_region" name="business_region_id" class="form-control">
-                                                    <option value="">--Please Select District--</option>
+                                                    <option value="">--Please Select Region--</option>
+                                                    @foreach($regions as $region)
+                                                        <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -375,13 +387,13 @@
     <script type="application/javascript">
         {{--    TODO: need to be removed    --}}
         $(document).ready(function () {
+            //application type
             $("#new").click(function () {
                hideShowLicenseNumber();
             });
             $("#renewal").click(function () {
                 hideShowLicenseNumber();
             });
-
             function hideShowLicenseNumber() {
                 if($("#new").is(":checked")){
                     $("#license_number_div").addClass('hidden-input');
@@ -390,6 +402,110 @@
                     $("#license_number_div").removeClass('hidden-input');
                 }
             }
+
+            //sector category load
+            $('#sector_id').change(function () {
+                var  sector_id =$('#sector_id').val();
+                var category = $(category_id);
+                if(sector_id >= 1){
+                    loadSectorCategories(sector_id,category);
+                }
+                else{
+                    category.html('<option>--Please Select Category--</option>');
+                    $('#business_type_id').html('<option>--Please Select Business Type--</option>');
+                }
+
+            });
+            function loadSectorCategories(id,category) {
+
+                category.html('<option>--Please Select Category--</option>');
+                $('#business_type_id').html('<option>--Please Select Business Type--</option>');
+
+                $.get('/applicants/ajax/sector/'+id+'/categories',function (data) {
+                    var sector_categories =data.sector_categories;
+                    for(var index in sector_categories)
+                    {
+                        category.append("<option value='"+sector_categories[index].id+"'>"+sector_categories[index].name+"</option>");
+
+                    }
+                });
+
+            }
+
+            // category business type
+            $('#category_id').change(function () {
+                var category_id = $('#category_id').val();
+                var business_type = $('#business_type_id');
+
+                if(category_id >= 1){
+                    loadCategoryBusinessTypes(category_id,business_type);
+                }
+                else{
+                    business_type.html('<option>--Please Select Business Type--</option>');
+                }
+            });
+            function  loadCategoryBusinessTypes(id,business_type) {
+                business_type.html('<option>--Please Select Business Type--</option>');
+
+                $.get('/applicants/ajax/category/'+id+'/business_type',function (data) {
+                    console.log(data.category_business_types);
+                    var category_business_types =data.category_business_types;
+                    for(var i in category_business_types)
+                    {
+                        business_type.append("<option value='"+category_business_types[i].id+"'>"+category_business_types[i].name+"</option>");
+
+                    }
+                });
+            }
+
+            //load applicant region district
+            $('#applicant_region').change(function () {
+                var region_id = $('#applicant_region').val();
+                var district = $('#applicant_district');
+
+                if (region_id >= 0){
+                    ajaxLoadRegionDistrict(region_id,district);
+                }
+                else{
+                    district.html('<option>--Please Select District--</option>');
+                }
+            });
+            function ajaxLoadRegionDistrict(region_id,district) {
+                district.html('<option>--Please Select District--</option>');
+
+                $.get('/applicants/ajax/region/'+region_id+'/districts',function (data) {
+                    var districts = data.districts;
+
+                    for (var index in districts){
+                        district.append("<option value='"+districts[index].id+"'>"+districts[index].name+"</option>");
+                    }
+                });
+            }
+
+            //load business region district
+            $('#business_region').change(function () {
+                var region_id = $('#business_region').val();
+                var district = $('#business_district');
+
+                if (region_id >= 0){
+                    ajaxLoadRegionDistrict(region_id,district);
+                }
+                else{
+                    district.html('<option>--Please Select District--</option>');
+                }
+            });
+            function ajaxLoadRegionDistrict(region_id,district) {
+                district.html('<option>--Please Select District--</option>');
+
+                $.get('/applicants/ajax/region/'+region_id+'/districts',function (data) {
+                    var districts = data.districts;
+
+                    for (var index in districts){
+                        district.append("<option value='"+districts[index].id+"'>"+districts[index].name+"</option>");
+                    }
+                });
+            }
+
 
 
         })
