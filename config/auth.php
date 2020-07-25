@@ -43,12 +43,12 @@ return [
 
         'web_admin' => [
             'driver' => 'session',
-            'provider' => 'admin',
+            'provider' => 'admins',
         ],
 
         'web_government_official' => [
             'driver' => 'session',
-            'provider' => 'government_official',
+            'provider' => 'government_officials',
         ],
 
         'api' => [
@@ -121,7 +121,7 @@ return [
             'throttle' => 60,
         ],
         'government_officials' => [
-            'provider' => 'government_official',
+            'provider' => 'government_officials',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

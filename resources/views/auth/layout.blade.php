@@ -31,11 +31,20 @@
                             <h5 class="text-white font-size-20">Welcome Back!</h5>
                             <p class="text-white-50 mb-0">Sign in to continue to OBLR.</p>
                             <a href="/" class="logo logo-admin mt-4">
-                                <img src="{{ asset('images/logo-sm-dark.png') }}" alt="" height="30">
+                                <img src="{{ asset('images/default_black_small.png') }}" alt="" height="30">
                             </a>
                         </div>
                     </div>
                     <div class="card-body pt-5">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="p-2">
                             @yield('form')
                         </div>

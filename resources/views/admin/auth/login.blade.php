@@ -3,7 +3,8 @@
 @section('title', 'Admin Login')
 
 @section('form')
-    <form class="form-horizontal" action="index.html">
+    <form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
+        @csrf
         @include('auth.login')
     </form>
 @endsection

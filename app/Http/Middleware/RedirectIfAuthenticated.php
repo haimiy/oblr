@@ -18,8 +18,24 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect(RouteServiceProvider::APPLICANTS_HOME);
+        switch ($guard) {
+            case 'web_admin':
+                if (Auth::guard($guard)->check()) {
+                    return redirect(RouteServiceProvider::ADMIN_HOME);
+                }
+            break;
+
+            case 'web_government_official':
+                if (Auth::guard($guard)->check()) {
+                    return redirect(RouteServiceProvider::GOVERNMENT_OFFICIAL);
+                }
+            break;
+
+            default:
+                if (Auth::guard($guard)->check()) {
+                    return redirect(RouteServiceProvider::APPLICANTS_HOME);
+                }
+                break;
         }
 
         return $next($request);

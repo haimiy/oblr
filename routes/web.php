@@ -2,53 +2,31 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/login', function () {
-    return view('admin.auth.login');
-});
-
 /** Applicant Routes **/
-Route::prefix('applicants')->group(function (){
+Route::prefix('applicant')->as('applicants.')->group(function (){
 
     /** Applicant Auth **/
     //register
-    Route::get('register', 'Applicants\RegistrationController@showRegistrationForm')->name('applicants.register');
+    Route::get('register', 'Applicants\RegistrationController@showRegistrationForm')->name('register');
     Route::post('register', 'Applicants\RegistrationController@register');
     //loin
-    Route::get('login', 'Applicants\LoginController@showLoginForm')->name('applicants.login');
-    Route::post('login','Applicants\LoginController@login')->name('applicants.login');
+    Route::get('login', 'Applicants\LoginController@showLoginForm')->name('login');
+    Route::post('login','Applicants\LoginController@login')->name('login');
     //logout
-    Route::get('logout', 'Applicants\LoginController@logout')->name('applicants.logout');
+    Route::get('logout', 'Applicants\LoginController@logout')->name('logout');
 
     /** Auth routes **/
     Route::middleware(['auth'])->group(function (){
         /** Applicant Home **/
-        Route::get('home','Applicants\HomeController@showApplicantHome')->name('applicants.home');
-        /** Licences **/
-        Route::get('licenses','LicenseController@showAllApplicantLicense')->name('applicants.licenses');
 
-        /** Application Requesting **/
-        Route::get('applications','ApplicationController@showAllApplicantApplicationRequest')->name('applicants.applications');
-        Route::get('applications/request','ApplicationController@showApplicantApplicationRequestForm')->name('applicants.applications.request');
-        Route::post('applications/request','ApplicationController@storeApplicantApplicationRequest')->name('applicants.applications.request');
-        Route::get('applications/pending','ApplicationController@showAllApplicantPendingApplicationRequest')->name('applicants.applications.pending');
-        Route::get('applications/fail','ApplicationController@showAllApplicantFailApplicationRequest')->name('applicants.applications.fail');
 
-        Route::get('profile','Applicants\ApplicantsController@showApplicantProfileSetting')->name('applicants.profile');
+
+
+        Route::get('profile','Applicants\ApplicantsController@showApplicantProfileSetting')->name('profile');
 
         Route::prefix('ajax')->group(function (){
             //home
@@ -63,5 +41,31 @@ Route::prefix('applicants')->group(function (){
     });
 });
 
+
+// Admin Guest Routes
+Route::as('admin.')->prefix('admin')->group(function (){
+    Route::get('login', 'Admin\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'Admin\LoginController@login');
+});
+
+// Authenticated Admin Routes
+Route::namespace('Admin')->middleware('auth:web_admin')->as('admin.')->prefix('admin')->group(function (){
+    Route::get('/', 'AdminController@index')->name('home');
+
+    Route::post('logout', 'LoginController@logout')->name('logout');
+});
+
+// Government Officials Guest Routes
+Route::as('gvt.')->prefix('governmentofficial')->group(function (){
+    Route::get('login', 'GovernmentOfficial\LoginController@showLoginForm')->name('login');
+    Route::post('login', 'GovernmentOfficial\LoginController@login');
+});
+
+// Authenticated Government Official Routes
+Route::namespace('GovernmentOfficial')->middleware('auth:web_government_official')->as('gvt.')->prefix('governmentofficial')->group(function (){
+    Route::get('/', 'GovernmentOfficialController@index')->name('home');
+
+    Route::post('logout', 'LoginController@logout')->name('logout');
+});
 
 Route::get('/home', 'HomeController@index')->name('home');
