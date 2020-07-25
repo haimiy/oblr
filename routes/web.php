@@ -7,7 +7,7 @@ Route::get('/', function () {
 });
 
 /** Applicant Routes **/
-Route::prefix('applicant')->as('applicants.')->group(function (){
+Route::prefix('applicant')->as('applicant.')->group(function (){
 
     /** Applicant Auth **/
     //register
@@ -17,13 +17,30 @@ Route::prefix('applicant')->as('applicants.')->group(function (){
     Route::get('login', 'Applicants\LoginController@showLoginForm')->name('login');
     Route::post('login','Applicants\LoginController@login')->name('login');
     //logout
-    Route::get('logout', 'Applicants\LoginController@logout')->name('logout');
+    Route::post('logout', 'Applicants\LoginController@logout')->name('logout');
 
     /** Auth routes **/
     Route::middleware(['auth'])->group(function (){
         /** Applicant Home **/
+        Route::get('home','Applicants\HomeController@showApplicantHome')->name('home');
+        /** Licences **/
+        Route::get('licenses','LicenseController@showAllApplicantLicense')->name('licenses');
 
+        /** Application Requesting **/
+        Route::get('applications','ApplicationController@showAllApplicantApplicationRequest')->name('applications');
+        Route::get('applications/request','ApplicationController@showApplicantApplicationRequestForm')->name('applications.request');
+        Route::post('applications/request','ApplicationController@storeApplicantApplicationRequest')->name('applications.request');
+        Route::get('applications/pending','ApplicationController@showAllApplicantPendingApplicationRequest')->name('applications.pending');
+        Route::get('applications/fail','ApplicationController@showAllApplicantFailApplicationRequest')->name('applications.fail');
 
+        Route::get('/','Applicants\HomeController@showApplicantHome')->name('home');
+
+        Route::get('licenses','LicenseController@showAllApplicantLicense')->name('licenses');
+
+        Route::get('applications','ApplicationController@showAllApplicantApplicationRequest')->name('applications');
+        Route::get('applications/request','ApplicationController@showApplicantApplicationRequestForm')->name('applications.request');
+        Route::get('applications/pending','ApplicationController@showAllApplicantPendingApplicationRequest')->name('applications.pending');
+        Route::get('applications/fail','ApplicationController@showAllApplicantFailApplicationRequest')->name('applications.fail');
 
 
         Route::get('profile','Applicants\ApplicantsController@showApplicantProfileSetting')->name('profile');

@@ -189,13 +189,13 @@
                                 <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
                                 <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="{{route('applicants.logout')}}"
+                                <a class="dropdown-item text-danger" href="{{route('applicant.logout')}}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout
                                 </a>
 
-                                <form id="logout-form" action="{{ route('applicants.logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ route('applicant.logout') }}" method="POST" style="display: none;">
                                     @csrf
                                 </form>                            </div>
                         </div>
@@ -427,13 +427,13 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li>
-                            <a href="{{route('applicants.home')}}" class=" waves-effect">
+                            <a href="{{route('applicant.home')}}" class=" waves-effect">
                                 <i class="mdi mdi-airplay"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('applicants.licenses')}}" class=" waves-effect">
+                            <a href="{{route('applicant.licenses')}}" class=" waves-effect">
                                 <i class="mdi mdi-license"></i>
                                 <span>License</span>
                             </a>
@@ -444,13 +444,13 @@
                                 <span>License Application</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{route('applicants.applications')}}">All Application</a></li>
-                                <li><a href="{{route('applicants.applications.pending')}}">Pending Application</a></li>
-                                <li><a href="{{route('applicants.applications.fail')}}">Fail Application</a></li>
+                                <li><a href="{{route('applicant.applications')}}">All Application</a></li>
+                                <li><a href="{{route('applicant.applications.pending')}}">Pending Application</a></li>
+                                <li><a href="{{route('applicant.applications.fail')}}">Fail Application</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a href="{{route('applicants.profile')}}" class=" waves-effect">
+                            <a href="{{route('applicant.profile')}}" class=" waves-effect">
                                 <i class="mdi mdi-settings"></i>
                                 <span>Profile</span>
                             </a>

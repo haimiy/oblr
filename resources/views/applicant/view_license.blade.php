@@ -28,7 +28,7 @@
 
                         <h4 class="card-title">All License</h4>
                         <div class="col-md-12">
-                            <a href="{{route('applicants.applications.request')}}" class="float-right btn btn-primary"><i class="mdi mdi mdi mdi-folder-edit-outline"></i> Request License</a>
+                            <a href="{{route('applicant.applications.request')}}" class="float-right btn btn-primary"><i class="mdi mdi mdi mdi-folder-edit-outline"></i> Request License</a>
                         </div>
 
                         <p class="card-title-desc">The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.

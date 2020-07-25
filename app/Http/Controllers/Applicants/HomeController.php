@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Applicants;
 use App\Application;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class HomeController extends Controller
@@ -20,7 +21,9 @@ class HomeController extends Controller
 
     public function ajaxLoadDashboardData(){
         $applications = Application::where('status',false)->where('applicant_id',\request()->user()->id)->get();
-        $licenses = Application::where('status',false)->where('applicant_id',\request()->user()->id)->get();
+        $user_id = request()->user()->id;
+        $licenses =
+            DB::select(DB::raw("select * from applications  right join applicant_details on applications.applicant_details_id=applicant_details.id right join licenses on licenses.applicant_details_id=applicant_details.id where applications.applicant_id=$user_id"));
         return response()->json(['total_applicant_applications'=>count($applications),'total_applicant_licenses'=>count($licenses)]);
     }
 

@@ -90,7 +90,7 @@
 
                         <h4 class="card-title">All License Application List </h4>
                         <div class="col-md-12">
-                            <a href="{{route('applicants.applications.request')}}" class="float-right btn btn-primary"><i class="mdi mdi mdi mdi-folder-edit-outline"></i> Request License</a>
+                            <a href="{{route('applicant.applications.request')}}" class="float-right btn btn-primary"><i class="mdi mdi mdi mdi-folder-edit-outline"></i> Request License</a>
                         </div>
 
                         <p class="card-title-desc">
@@ -151,7 +151,7 @@
         //         // lengthChange:!1,
         //         // buttons:["copy","excel","pdf","colvis"],
         //     });
-            $.get('/applicants/ajax/dashboard',function (data) {
+            $.get('/applicant/ajax/dashboard',function (data) {
                 $('#pending_request').html(data.total_applicant_applications);
                 $('#license').html(data.total_applicant_licenses);
             }); //pending_request license

@@ -3,12 +3,12 @@
 @section('title', 'Applicant Login')
 
 @section('form')
-    <form class="form-horizontal" action="{{ route('applicants.login') }}" method="post">
+    <form class="form-horizontal" action="{{ route('applicant.login') }}" method="post">
         @csrf
         @include('auth.login')
     </form>
 @endsection
 
 @section('register')
-    <p>Don't have an account ? <a href="{{ route('applicants.register') }}" class="font-weight-medium text-primary"> Sign up now </a> </p>
+    <p>Don't have an account ? <a href="{{ route('applicant.register') }}" class="font-weight-medium text-primary"> Sign up now </a> </p>
 @endsection

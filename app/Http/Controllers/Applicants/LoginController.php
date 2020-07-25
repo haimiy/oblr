@@ -23,6 +23,6 @@ class LoginController extends Controller
 
     protected function loggedOut(Request $request)
     {
-        return redirect(route('applicants.login'));
+        return redirect(route('applicant.login'));
     }
 }
