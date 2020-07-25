@@ -38,17 +38,23 @@ Route::prefix('applicants')->group(function (){
     Route::middleware(['auth'])->group(function (){
         /** Applicant Home **/
         Route::get('home','Applicants\HomeController@showApplicantHome')->name('applicants.home');
-
+        /** Licences **/
         Route::get('licenses','LicenseController@showAllApplicantLicense')->name('applicants.licenses');
 
+        /** Application Requesting **/
         Route::get('applications','ApplicationController@showAllApplicantApplicationRequest')->name('applicants.applications');
         Route::get('applications/request','ApplicationController@showApplicantApplicationRequestForm')->name('applicants.applications.request');
+        Route::post('applications/request','ApplicationController@storeApplicantApplicationRequest')->name('applicants.applications.request');
         Route::get('applications/pending','ApplicationController@showAllApplicantPendingApplicationRequest')->name('applicants.applications.pending');
         Route::get('applications/fail','ApplicationController@showAllApplicantFailApplicationRequest')->name('applicants.applications.fail');
 
         Route::get('profile','Applicants\ApplicantsController@showApplicantProfileSetting')->name('applicants.profile');
 
         Route::prefix('ajax')->group(function (){
+            //home
+            Route::get('applications','Applicants\HomeController@ajaxLoadAllApplicationsDataTable')->name('applicants.ajax.application');
+            Route::get('dashboard','Applicants\HomeController@ajaxLoadDashboardData')->name('applicants.ajax.dashboard');
+            //application
             Route::get('sector/{sector_id}/categories','ApplicationController@ajaxLoadSectorCategories' );
             Route::get('categories/{category_id}/business_types','ApplicationController@ajaxLoadCategoryBusinessTypes' );
             Route::get('regions/{region_id}/districts','ApplicationController@ajaxLoadRegionDistricts' );
@@ -57,6 +63,5 @@ Route::prefix('applicants')->group(function (){
     });
 });
 
-//Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

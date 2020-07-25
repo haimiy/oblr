@@ -37,17 +37,26 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>#</th>
+                                <th>Applicant Name</th>
+                                <th>License No</th>
+                                <th>Date of issue</th>
+                                <th>Expire date</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
 
                             <tbody>
-
+                            @foreach($licenses as $license)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $license->first_name." ".$last_name }}</td>
+                                    <td>{{ $license->license_number }}</td>
+                                    <td>{{ $license->license_number }}</td>
+                                    <td>{{ $license->license_number }}</td>
+                                    <td><a type="button" class="btn btn-light btn-sm waves-effect waves-light">View</a></td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>

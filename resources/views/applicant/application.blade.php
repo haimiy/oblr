@@ -34,7 +34,8 @@
                         <h4 class="card-title">Request License</h4>
                         <p class="card-title-desc">Request new License or Renew License</p>
 
-                        <form id="form-horizontal" class="form-horizontal form-wizard-wrapper">
+                        <form id="form-horizontal" class="form-horizontal form-wizard-wrapper" method="post" action="{{ route('applicants.applications.request') }}" enctype="multipart/form-data">
+                            @csrf
                             <h3>Application Types</h3>
                             <fieldset>
                                 <div class="row">
@@ -61,9 +62,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row hidden-input" id="license_number_div" >
-                                            <label for="license_number" class="col-lg-3 col-form-label">Licenses No.</label>
+                                            <label for="license_number" class="col-lg-3 col-form-label">Licenses No *</label>
                                             <div class="col-lg-9">
-                                                <input id="license_number" name="license_number" type="text" class="form-control">
+                                                <input  id="license_number" name="license_number" type="text" class="form-control" >
                                             </div>
                                         </div>
                                     </div>
@@ -71,9 +72,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="entity_type" class="col-lg-3 col-form-label">Entity Type</label>
+                                            <label for="entity_type" class="col-lg-3 col-form-label">Entity Type *</label>
                                             <div class="col-lg-9">
-                                                <select id="entity_type" name="entity_type" class="form-control">
+                                                <select id="entity_type" name="entity_type" class="form-control" required>
                                                     <option value="">--Please Select Entity type--</option>
                                                     @foreach($entity_types as $entity_type)
                                                         <option value="{{ $entity_type->id }}">{{ $entity_type->name }}</option>
@@ -84,9 +85,9 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="sector_id" class="col-lg-3 col-form-label">Sector</label>
+                                            <label for="sector_id" class="col-lg-3 col-form-label">Sector *</label>
                                             <div class="col-lg-9">
-                                                <select id="sector_id" name="sector_id" class="form-control">
+                                                <select id="sector_id" name="sector_id" class="form-control" required>
                                                     <option value="">--Please Select Sector--</option>
                                                     @foreach($sectors as $sector)
                                                         <option value="{{ $sector->id }}">{{ $sector->name }}</option>
@@ -99,24 +100,25 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="category_id" class="col-lg-3 col-form-label">Category</label>
+                                            <label for="category_id" class="col-lg-3 col-form-label">Category *</label>
                                             <div class="col-lg-9">
-                                                <select id="category_id" name="category_id" class="form-control">
-                                                    <option>--Please Select Category--</option>
+                                                <select id="category_id" name="category_id" class="form-control" required>
+                                                    <option value="">--Please Select Category--</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="business_type_id" class="col-lg-3 col-form-label">Business Type</label>
+                                            <label for="business_type_id" class="col-lg-3 col-form-label">Business Type *</label>
                                             <div class="col-lg-9">
-                                                <select id="business_type_id" name="business_type_id" class="form-control">
+                                                <select id="business_type_id" name="business_type_id" class="form-control" required>
                                                     <option value="">--Please Select Business Type--</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
+                                    <i>(*) Mandatory</i>
                                 </div>
 
                             </fieldset>
@@ -125,18 +127,36 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="first_name" class="col-lg-3 col-form-label">First Name</label>
+                                            <label for="first_name" class="col-lg-3 col-form-label">First Name *</label>
                                             <div class="col-lg-9">
-                                                <input id="first_name" name="first_name" type="text" class="form-control">
+                                                <input id="first_name" name="first_name" type="text" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="last_name" class="col-lg-3 col-form-label">Last Name</label>
+                                            <label for="last_name" class="col-lg-3 col-form-label">Last Name *</label>
+                                            <div class="col-lg-9">
+                                                <input id="last_name" name="last_name" type="text" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="dob" class="col-lg-3 col-form-label">Date of Birth *</label>
+                                            <div class="col-lg-9">
+                                                <input class="form-control" type="date" value="2019-08-19" name="dob" id="dob" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="last_name" class="col-lg-3 col-form-label">Gender *</label>
                                             <div class="col-lg-4">
                                                 <div class="form-check mb-2">
-                                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked="">
+                                                    <input class="form-check-input" type="radio" name="gender" id="male" value="male" checked="" required>
                                                     <label class="form-check-label" for="male">
                                                         Male
                                                     </label>
@@ -156,12 +176,47 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="dob" class="col-lg-3 col-form-label">Date of Birth</label>
+                                            <label for="applicant_email" class="col-lg-3 col-form-label">Email *</label>
                                             <div class="col-lg-9">
-                                                <input class="form-control" type="date" value="2019-08-19" name="dob" id="dob">
+                                                <input id="applicant_email" name="applicant_email" type="email" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="applicant_phone" class="col-lg-3 col-form-label">Phone Number *</label>
+                                            <div class="col-lg-9">
+                                                <input id="applicant_phone" name="applicant_phone" type="text" class="form-control" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="applicant_region" class="col-lg-3 col-form-label">Region *</label>
+                                            <div class="col-lg-9">
+                                                <select id="applicant_region" name="applicant_region_id" class="form-control" required>
+                                                    <option value="">--Please Select Region--</option>
+                                                    @foreach($regions as $region)
+                                                        <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label for="applicant_district" class="col-lg-3 col-form-label">District *</label>
+                                            <div class="col-lg-9">
+                                                <select id="applicant_district" name="applicant_district_id" class="form-control" required>
+                                                    <option value="">--Please Select District--</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
                                             <label for="nationality" class="col-lg-3 col-form-label">Nationality</label>
@@ -183,49 +238,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="applicant_email" class="col-lg-3 col-form-label">Email</label>
-                                            <div class="col-lg-9">
-                                                <input id="applicant_email" name="applicant_email" type="email" class="form-control">
-                                            </div>
+
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="applicant_phone" class="col-lg-3 col-form-label">Phone Number</label>
-                                            <div class="col-lg-9">
-                                                <input id="applicant_phone" name="applicant_phone" type="text" class="form-control">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="applicant_region" class="col-lg-3 col-form-label">Region</label>
-                                            <div class="col-lg-9">
-                                                <select id="applicant_region" name="applicant_region_id" class="form-control">
-                                                    <option value="">--Please Select Region--</option>
-                                                    @foreach($regions as $region)
-                                                        <option value="{{ $region->id }}">{{ $region->name }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="applicant_district" class="col-lg-3 col-form-label">District</label>
-                                            <div class="col-lg-9">
-                                                <select id="applicant_district" name="applicant_district_id" class="form-control">
-                                                    <option value="">--Please Select District--</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <i>(*) Mandatory</i>
                                 </div>
                             </fieldset>
                             <h3>Business Details</h3>
@@ -233,17 +251,17 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="business_name" class="col-lg-3 col-form-label">Business Name</label>
+                                            <label for="business_name" class="col-lg-3 col-form-label">Business Name *</label>
                                             <div class="col-lg-9">
-                                                <input id="business_name" name="business_name" type="text" class="form-control">
+                                                <input id="business_name" name="business_name" type="text" class="form-control" value="" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="business_email" class="col-lg-3 col-form-label">Email</label>
+                                            <label for="business_email" class="col-lg-3 col-form-label">Email *</label>
                                             <div class="col-lg-9">
-                                                <input id="business_email" name="business_email" type="email" class="form-control">
+                                                <input id="business_email" name="business_email" type="email" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
@@ -251,17 +269,17 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="business_phone" class="col-lg-3 col-form-label">Phone Number</label>
+                                            <label for="business_phone" class="col-lg-3 col-form-label">Phone Number *</label>
                                             <div class="col-lg-9">
-                                                <input id="business_phone" name="business_phone" type="text" class="form-control">
+                                                <input id="business_phone" name="business_phone" type="text" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="business_region" class="col-lg-3 col-form-label">Region</label>
+                                            <label for="business_region" class="col-lg-3 col-form-label">Region *</label>
                                             <div class="col-lg-9">
-                                                <select id="business_region" name="business_region_id" class="form-control">
+                                                <select id="business_region" name="business_region_id" class="form-control" required>
                                                     <option value="">--Please Select Region--</option>
                                                     @foreach($regions as $region)
                                                         <option value="{{ $region->id }}">{{ $region->name }}</option>
@@ -274,9 +292,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="business_district" class="col-lg-3 col-form-label">District</label>
+                                            <label for="business_district" class="col-lg-3 col-form-label">District *</label>
                                             <div class="col-lg-9">
-                                                <select id="business_district" name="business_district_id" class="form-control">
+                                                <select id="business_district" name="business_district_id" class="form-control" required>
                                                     <option value="">--Please Select District--</option>
                                                 </select>
                                             </div>
@@ -301,8 +319,10 @@
                                                     </label>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
+                                    <i>(*) Mandatory</i>
                                 </div>
                             </fieldset>
                             <h3>Document</h3>
@@ -310,10 +330,10 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="proof_doc" class="col-lg-3 col-form-label">Proof of Tanzanian Citizenship/Residence Class Permit</label>
+                                            <label for="proof_doc" class="col-lg-3 col-form-label">Proof of Tanzanian Citizenship/Residence Class Permit *</label>
                                             <div class="col-lg-9">
                                                 <div class="custom-file">
-                                                    <input type="file" name="proof_doc" class="custom-file-input" id="proof_doc">
+                                                    <input type="file" name="proof_doc" class="custom-file-input" id="proof_doc" required>
                                                     <label class="custom-file-label float-left" for="proof_doc">Choose file</label>
                                                 </div>
                                             </div>
@@ -321,10 +341,10 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="memorandum_doc" class="col-lg-3 col-form-label">Memorandum and Articles of Association</label>
+                                            <label for="memorandum_doc" class="col-lg-3 col-form-label">Memorandum and Articles of Association *</label>
                                             <div class="col-lg-9">
                                                 <div class="custom-file">
-                                                    <input type="file" name="memorandum_doc" class="custom-file-input" id="memorandum_doc">
+                                                    <input type="file" name="memorandum_doc" class="custom-file-input" id="memorandum_doc" required>
                                                     <label class="custom-file-label float-left" for="memorandum_doc">Choose file</label>
                                                 </div>
                                             </div>
@@ -334,26 +354,19 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group row">
-                                            <label for="tin_doc" class="col-lg-3 col-form-label">Tax Identification No</label>
+                                            <label for="tin_doc" class="col-lg-3 col-form-label">Tax Identification No *</label>
                                             <div class="col-lg-9">
                                                 <div class="custom-file">
-                                                    <input type="file" name="tin_doc" class="custom-file-input" id="tin_doc">
+                                                    <input type="file" name="tin_doc" class="custom-file-input" id="tin_doc" required>
                                                     <label class="custom-file-label float-left" for="tin_doc">Choose file</label>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="permit" class="col-md-6">
-                                        <div class="form-group row">
-                                            <label for="permit_doc" class="col-lg-3 col-form-label">Permit</label>
-                                            <div class="col-lg-9">
-                                                <div class="custom-file">
-                                                    <input type="file" name="permit_doc" class="custom-file-input" id="permit_doc">
-                                                    <label class="custom-file-label float-left" for="permit_doc">Choose file</label>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
+                                    <i>(*) Mandatory</i>
                                 </div>
                             </fieldset>
                             <h3> Confirm Detail</h3>
@@ -380,6 +393,7 @@
 
 @section('page-js')
     <!-- form wizard -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
     <script src="{{asset('libs/jquery-steps/build/jquery.steps.min.js')}}"></script>
 
     <!-- form wizard init -->
@@ -388,6 +402,7 @@
         {{--    TODO: need to be removed    --}}
         $(document).ready(function () {
             //application type
+            $("#license_number").hide();
             $("#new").click(function () {
                hideShowLicenseNumber();
             });
@@ -397,9 +412,11 @@
             function hideShowLicenseNumber() {
                 if($("#new").is(":checked")){
                     $("#license_number_div").addClass('hidden-input');
+                    $("#license_number").hide();
                 }
                 if($("#renewal").is(":checked")){
                     $("#license_number_div").removeClass('hidden-input');
+                    $("#license_number").show();
                 }
             }
 
@@ -414,15 +431,15 @@
                     loadSectorCategories(sector_id,category);
                 }
                 else{
-                    category.html('<option>--Please Select Category--</option>');
-                    $('#business_type_id').html('<option>--Please Select Business Type--</option>');
+                    category.html('<option value="">--Please Select Category--</option>');
+                    $('#business_type_id').html('<option value="">--Please Select Business Type--</option>');
                 }
 
             });
             function loadSectorCategories(id,category) {
 
-                category.html('<option>--Please Select Category--</option>');
-                $('#business_type_id').html('<option>--Please Select Business Type--</option>');
+                category.html('<option value="">--Please Select Category--</option>');
+                $('#business_type_id').html('<option value="">--Please Select Business Type--</option>');
 
                 $.get('/applicants/ajax/sector/'+id+'/categories',function (data) {
                     var sector_categories =data.sector_categories;
@@ -446,11 +463,11 @@
                     loadCategoryBusinessTypes(category_id,business_type);
                 }
                 else{
-                    business_type.html('<option>--Please Select Business Type--</option>');
+                    business_type.html('<option value="">--Please Select Business Type--</option>');
                 }
             });
             function  loadCategoryBusinessTypes(id,business_type) {
-                business_type.html('<option>--Please Select Business Type--</option>');
+                business_type.html('<option value="">--Please Select Business Type--</option>');
 
                 $.get('/applicants/ajax/categories/'+id+'/business_types',function (data) {
                     var category_business_types =data.category_business_types;
@@ -490,7 +507,7 @@
                                  ' <label for="permit_doc" class="col-lg-3 col-form-label">Permit('+permissions[0].name+')</label> ' +
                                  '<div class="col-lg-9"> ' +
                                  '<div class="custom-file">' +
-                                 ' <input type="file" name="permit_doc" class="custom-file-input" id="permit_doc">' +
+                                 ' <input type="file" name="permit_doc" class="custom-file-input" id="permit_doc" required>' +
                                  ' <label class="custom-file-label float-left" for="permit_doc">Choose file</label>' +
                                  ' </div>' +
                                  ' </div> ' +
@@ -516,11 +533,11 @@
                     ajaxLoadRegionDistrict(region_id,district);
                 }
                 else{
-                    district.html('<option>--Please Select District--</option>');
+                    district.html('<option value="">--Please Select District--</option>');
                 }
             });
             function ajaxLoadRegionDistrict(region_id,district) {
-                district.html('<option>--Please Select District--</option>');
+                district.html('<option value="">--Please Select District--</option>');
 
                 $.get('/applicants/ajax/regions/'+region_id+'/districts',function (data) {
                     var districts = data.districts;
@@ -540,11 +557,11 @@
                     ajaxLoadRegionDistrict(region_id,district);
                 }
                 else{
-                    district.html('<option>--Please Select District--</option>');
+                    district.html('<option value="">--Please Select District--</option>');
                 }
             });
             function ajaxLoadRegionDistrict(region_id,district) {
-                district.html('<option>--Please Select District--</option>');
+                district.html('<option value="">--Please Select District--</option>');
 
                 $.get('/applicants/ajax/regions/'+region_id+'/districts',function (data) {
                     var districts = data.districts;

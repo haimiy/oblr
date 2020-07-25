@@ -22,7 +22,7 @@ class CreateApplicationsTable extends Migration
             $table->bigInteger('business_details_id');
             $table->boolean('status');
             $table->enum('application_type', ['new', 'renewal']); //need license no
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
 
@@ -36,13 +36,13 @@ class CreateApplicationsTable extends Migration
             $table->date('dob');
             $table->string('nationality');
             $table->bigInteger('address_id');
-            $table->bigInteger('application_id');
             $table->timestamps();
         });
 
         Schema::create('business_details', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->bigInteger('address_id');
             $table->enum('address_status', ['surveyed', 'un-surveyed']);

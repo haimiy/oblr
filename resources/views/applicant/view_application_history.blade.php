@@ -35,20 +35,7 @@
                         </p>
 
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                            <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                            </thead>
-
-                            <tbody>
-
-                            </tbody>
+                            @include('applicant.layouts.application_request')
                         </table>
                     </div>
                 </div>
