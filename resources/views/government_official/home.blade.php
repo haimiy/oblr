@@ -36,7 +36,11 @@
                                 <div class="font-size-16 mt-2">Pending Request</div>
                             </div>
                         </div>
-                        <h4 class="mt-4">0</h4>
+                        <h4 id="pending_request" class="mt-4">
+                            <div class="spinner-grow text-primary m-1" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </h4>
                         <div class="row">
                             <div class="col-7">
                                 <p class="mb-0"><span class="text-success mr-2"> 0% <i class="mdi mdi-arrow-up"></i> </span></p>
@@ -58,11 +62,15 @@
                                                     </span>
                             </div>
                             <div class="media-body">
-                                <div class="font-size-16 mt-2">License Applications</div>
+                                <div class="font-size-16 mt-2">License</div>
 
                             </div>
                         </div>
-                        <h4 class="mt-4">0</h4>
+                        <h4 class="mt-4" id="license">
+                            <div class="spinner-grow text-primary m-1" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </h4>
                         <div class="row">
                             <div class="col-7">
                                 <p class="mb-0"><span class="text-success mr-2"> 0% <i class="mdi mdi-arrow-up"></i> </span></p>
@@ -80,7 +88,7 @@
                 <div class="card">
                     <div class="card-body">
 
-                        <h4 class="card-title">All License Applications </h4>
+                        <h4 class="card-title">Pending Request </h4>
 
                         <p class="card-title-desc">
                             All the applications that are applied to your administrative locations will be listed here. You can approve or deny with reason an application after reviewing all its details.
@@ -89,18 +97,38 @@
                         <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
+                                <th>#</th>
+                                <th>Business Name</th>
+                                <th>Applicant</th>
+                                <th>Entity Type</th>
+                                <th>Business Type</th>
+                                <th>Status</th>
+                                <th>Comment</th>
+                                <th>Action</th>
                             </tr>
                             </thead>
-
                             <tbody>
+                            @foreach($applications as $application)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{ $application->name }}</td>
+                                    <td>{{ $application->first_name." ".$application->last_name }}</td>
+                                    <td>{{ $application->entity_type_name }}</td>
+                                    <td>{{ $application->business_type_name }}</td>
+                                    <td>
+                                        @if($application->status)
+                                            <span class="badge badge-info">reviewed</span>
+                                        @else
+                                            <span class="badge badge-soft-dark">Pending</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $application->comment == null?"No Comment": $application->comment }}</td>
+                                    <td>
+                                            <a href="governmentofficial/applications/{{ $application->id }}/review" type="button" class="btn btn-light btn-sm waves-effect waves-light">View</a>
+                                    </td>
+                                </tr>
+                            @endforeach
 
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -127,4 +155,12 @@
     <script src="{{ asset('libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
     <!-- Datatable init js -->
     <script src="{{ asset('js/pages/datatables.init.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $.get('/governmentofficial/ajax/dashboard',function (data) {
+                $('#pending_request').html(data.total_applicant_applications);
+                $('#license').html(data.total_applicant_licenses);
+            }); //pending_request license
+        });
+    </script>
 @endsection

@@ -254,30 +254,20 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li>
-                            <a href="{{route('applicants.home')}}" class=" waves-effect">
+                            <a href="{{route('gvt.home')}}" class=" waves-effect">
                                 <i class="mdi mdi-airplay"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('applicants.licenses')}}" class=" waves-effect">
+                            <a href="#" class=" waves-effect">
                                 <i class="mdi mdi-license"></i>
                                 <span>License</span>
                             </a>
                         </li>
+
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-flip-horizontal"></i>
-                                <span>License Application</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{route('applicants.applications')}}">All Application</a></li>
-                                <li><a href="{{route('applicants.applications.pending')}}">Pending Application</a></li>
-                                <li><a href="{{route('applicants.applications.fail')}}">Fail Application</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{route('applicants.profile')}}" class=" waves-effect">
+                            <a href="#" class=" waves-effect">
                                 <i class="mdi mdi-settings"></i>
                                 <span>Profile</span>
                             </a>

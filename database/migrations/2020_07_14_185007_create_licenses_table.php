@@ -14,7 +14,7 @@ class CreateLicensesTable extends Migration
     public function up()
     {
         Schema::create('licenses', function (Blueprint $table) {
-            $table->string('license_number');
+            $table->string('license_number')->primary();
             $table->bigInteger('business_type_id');
             $table->bigInteger('entity_id');
             $table->bigInteger('applicant_details_id');
@@ -22,7 +22,7 @@ class CreateLicensesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('licenses_history', function (Blueprint $table) {
+        Schema::create('license_histories', function (Blueprint $table) {
             $table->id();
             $table->string('license_number');
             $table->date('date_of_issue');
@@ -30,6 +30,8 @@ class CreateLicensesTable extends Migration
             $table->bigInteger('application_id');
             $table->timestamps();
         });
+//        $value = "AAAA111AA1";
+//        DB::update("ALTER TABLE users AUTO_INCREMENT = $value;");
     }
 
     /**

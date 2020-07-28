@@ -50,10 +50,10 @@
                             @foreach($licenses as $license)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $license->first_name." ".$last_name }}</td>
+                                    <td>{{ $license->first_name." ".$license->last_name }}</td>
                                     <td>{{ $license->license_number }}</td>
-                                    <td>{{ $license->license_number }}</td>
-                                    <td>{{ $license->license_number }}</td>
+                                    <td>{{ $license->date_of_issue }}</td>
+                                    <td>{{ $license->expiry_date }}</td>
                                     <td><a type="button" class="btn btn-light btn-sm waves-effect waves-light">View</a></td>
                                 </tr>
                             @endforeach

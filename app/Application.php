@@ -29,4 +29,7 @@ class Application extends Model
     public function businessType(){
         return $this->belongsTo(BusinessType::class,'business_type_id');
     }
+    public function document(){
+        return $this->hasMany(Document::class,'application_id');
+    }
 }

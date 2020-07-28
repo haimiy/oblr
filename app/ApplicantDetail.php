@@ -19,4 +19,7 @@ class ApplicantDetail extends Model
     public function license(){
         return $this->hasOne(License::class,'applicant_details_id');
     }
+    public function district(){
+        return $this->belongsTo(District::class,'address_id');
+    }
 }

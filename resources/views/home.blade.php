@@ -1,23 +1,11 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+<html>
+<head>
+    <title>Test</title>
+</head>
+<body>
+<iframe src ="{{ asset('images/upload/document/'.$file) }}" width="100%" height="100%" style="position: absolute;right: 0;left: 0;top: 0;bottom: 0;"></iframe>
+{{--<object data="your_url_to_pdf" type="application/pdf">--}}
+{{--    <embed src="your_url_to_pdf" type="application/pdf" />--}}
+{{--</object>--}}
+</body>
+</html>

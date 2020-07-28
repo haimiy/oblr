@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('file/view/{file}', function ($file) {
+    return view('home',['file'=>$file]);
+});
 
 /** Applicant Routes **/
 Route::prefix('applicant')->as('applicant.')->group(function (){
@@ -81,6 +84,12 @@ Route::as('gvt.')->prefix('governmentofficial')->group(function (){
 // Authenticated Government Official Routes
 Route::namespace('GovernmentOfficial')->middleware('auth:web_government_official')->as('gvt.')->prefix('governmentofficial')->group(function (){
     Route::get('/', 'GovernmentOfficialController@index')->name('home');
+
+    //request review
+    Route::get('applications/{id}/review','GovernmentOfficialController@applicationRequestReview');
+    Route::post('applications/{id}/review','GovernmentOfficialController@applicationRequestReviewStore')->name('applications.review');
+    //ajax
+    Route::get('ajax/dashboard','GovernmentOfficialController@ajaxLoadDashboard');
 
     Route::post('logout', 'LoginController@logout')->name('logout');
 });

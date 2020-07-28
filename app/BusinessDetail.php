@@ -13,4 +13,8 @@ class BusinessDetail extends Model
         'address_id',
         'address_status',
     ];
+
+    public function district(){
+        return $this->belongsTo(District::class,'address_id');
+    }
 }

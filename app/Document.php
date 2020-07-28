@@ -11,4 +11,7 @@ class Document extends Model
         'application_id',
         'document_type_id'
     ];
+    public function documentType(){
+        return $this->belongsTo(DocumentType::class,'document_type_id');
+    }
 }
