@@ -13,7 +13,7 @@
             </ul>
         </div>
     @endif
-    <form class="form-horizontal" method="post" action="{{ route('applicants.register') }}">
+    <form class="form-horizontal" method="post" action="{{ route('applicant.register') }}">
         @csrf
         <div class="row">
             <div class="col-md-6">

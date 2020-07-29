@@ -20,18 +20,27 @@
         <td>{{ $application->businessType->name }}</td>
         <td>
             @if($application->status)
-                <span class="badge badge-info">reviewed</span>
+                @if ($application->applicationStatus->is_accepted)
+                    <span class="badge badge-success">Accepted</span>
+                @else
+                    <span class="badge badge-danger">Rejected</span>
+                @endif
+
             @else
                 <span class="badge badge-soft-dark">Pending</span>
             @endif
         </td>
         <td>{{ $application->comment == null?"No Comment": $application->comment }}</td>
-        <td>
+        <td style="text-align:center">
             @if($application->status)
-                <a type="button" class="btn btn-light btn-sm waves-effect waves-light">View</a>
+                @if ($application->applicationStatus->is_accepted)
+                    <a type="button" class="btn btn-light btn-sm waves-effect waves-light">View</a>
+                @else
+                    <a type="button" class="btn btn-warning btn-sm waves-effect waves-light">Appeal</a>
+                @endif
+
             @else
                 <a type="button" class="btn btn-primary btn-sm waves-effect waves-light">Edit</a>
-                <a type="button" class="btn btn-light btn-sm waves-effect waves-light">View</a>
                 <a type="button" class="btn btn-danger btn-sm waves-effect waves-light">Cancel</a>
             @endif
         </td>

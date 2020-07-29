@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 
-@section('title','Government Official Dashboard')
+@section('title','Administrator Dashboard')
 
 @section('page-content')
     <div class="page-content">

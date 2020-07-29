@@ -32,4 +32,7 @@ class Application extends Model
     public function document(){
         return $this->hasMany(Document::class,'application_id');
     }
+    public function applicationStatus(){
+        return $this->hasOne(ApplicationStatus::class,'application_id');
+    }
 }

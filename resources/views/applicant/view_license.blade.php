@@ -54,7 +54,7 @@
                                     <td>{{ $license->license_number }}</td>
                                     <td>{{ $license->date_of_issue }}</td>
                                     <td>{{ $license->expiry_date }}</td>
-                                    <td><a type="button" class="btn btn-light btn-sm waves-effect waves-light">View</a></td>
+                                    <td style="text-align:center"><a type="button" class="btn btn-primary btn-sm waves-effect waves-light">Download</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

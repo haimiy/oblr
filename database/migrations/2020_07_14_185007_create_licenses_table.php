@@ -30,6 +30,12 @@ class CreateLicensesTable extends Migration
             $table->bigInteger('application_id');
             $table->timestamps();
         });
+        Schema::create('application_statuses', function (Blueprint $table) {
+            $table->id();
+            $table->string('application_id');
+            $table->boolean('is_accepted');
+            $table->timestamps();
+        });
 //        $value = "AAAA111AA1";
 //        DB::update("ALTER TABLE users AUTO_INCREMENT = $value;");
     }

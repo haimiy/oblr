@@ -253,37 +253,20 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li>
-                            <a href="{{route('applicant.home')}}" class=" waves-effect">
+                            <a href="{{route('admin.home')}}" class=" waves-effect">
                                 <i class="mdi mdi-airplay"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('applicant.licenses')}}" class=" waves-effect">
+                            <a href="#" class=" waves-effect">
                                 <i class="mdi mdi-license"></i>
-                                <span>License</span>
+                                <span>Manage Gvt Officials</span>
                             </a>
                         </li>
+
                         <li>
-                            <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="mdi mdi-flip-horizontal"></i>
-                                <span>License Applications</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="false">
-                                <li><a href="{{route('applicant.applications')}}">All Applications</a></li>
-                                <li><a href="#">Pending Application</a></li>
-                                <li><a href="#">Accepted Application</a></li>
-                                <li><a href="#">Denied Application</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="{{route('applicant.profile')}}" class=" waves-effect">
-                                <i class="mdi mdi-settings"></i>
-                                <span>Government Officials</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{route('applicant.profile')}}" class=" waves-effect">
+                            <a href="#" class=" waves-effect">
                                 <i class="mdi mdi-settings"></i>
                                 <span>Profile</span>
                             </a>

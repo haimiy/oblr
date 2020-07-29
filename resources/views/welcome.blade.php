@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="{{ route('applicants.login') }}">Applicant Login</a>
+                    <a href="{{ route('applicant.login') }}">Applicant Login</a>
                     <a href="{{ route('gvt.login') }}">Government Official Login</a>
                     <a href="{{ route('admin.login') }}">Admin Login</a>
                     <a href="https://github.com/haimiy/oblr" target="_blank">Our GitHub Repo</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\GovernmentOfficial;
 
 use App\Application;
+use App\ApplicationStatus;
 use App\Http\Controllers\Controller;
 use App\License;
 use App\LicenseHistory;
@@ -36,6 +37,10 @@ class GovernmentOfficialController extends Controller
             $application = Application::find($id);
             $application->status = true;
             $application->save();
+            ApplicationStatus::create([
+                'application_id'=>$application->id,
+                'is_accepted'=>true,
+            ]);
 
             $license = License::create([
                 'license_number'=>$license_id,
@@ -58,6 +63,10 @@ class GovernmentOfficialController extends Controller
             $application->status = true;
             $application->comment = $request->comment;
             $application->save();
+            ApplicationStatus::create([
+                'application_id'=>$application->id,
+                'is_accepted'=>false,
+            ]);
             return redirect(route('gvt.home'));
         }
         else {
