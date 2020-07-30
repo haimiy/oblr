@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Applicants;
+namespace App\Http\Controllers\GovernmentOfficial;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
