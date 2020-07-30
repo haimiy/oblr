@@ -13,6 +13,12 @@ class CreateAddressesTable extends Migration
      */
     public function up()
     {
+        Schema::create('regions', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+
         Schema::create('districts', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -20,11 +26,6 @@ class CreateAddressesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('regions', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->timestamps();
-        });
     }
 
     /**

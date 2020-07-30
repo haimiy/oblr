@@ -28,6 +28,7 @@ Route::prefix('applicant')->as('applicant.')->group(function (){
         Route::get('home','Applicants\HomeController@showApplicantHome')->name('home');
         /** Licences **/
         Route::get('licenses','LicenseController@showAllApplicantLicense')->name('licenses');
+        Route::get('licenses/{id}/download','LicenseController@downloadLicense')->name('licenses.download');
 
         /** Application Requesting **/
         Route::get('applications','ApplicationController@showAllApplicantApplicationRequest')->name('applications');
