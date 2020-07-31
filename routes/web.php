@@ -29,6 +29,7 @@ Route::prefix('applicant')->as('applicant.')->group(function (){
         /** Licences **/
         Route::get('licenses','LicenseController@showAllApplicantLicense')->name('licenses');
         Route::get('licenses/{id}/download','LicenseController@downloadLicense')->name('licenses.download');
+        Route::get('licenses/{id}/renew','LicenseController@renewLicense')->name('licenses.renew');
 
         /** Application Requesting **/
         Route::get('applications','ApplicationController@showAllApplicantApplicationRequest')->name('applications');
