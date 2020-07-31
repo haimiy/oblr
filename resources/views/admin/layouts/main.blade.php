@@ -259,10 +259,16 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class=" waves-effect">
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="mdi mdi-license"></i>
                                 <span>Manage Gvt Officials</span>
                             </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{route('admin.governmentofficial.create')}}">Add New</a></li>
+                                <li><a href="{{route('admin.governmentofficial.index')}}">All Gvt Officials</a></li>
+                                <li><a href="{{route('applicant.applications.pending')}}">Pending Application</a></li>
+                                <li><a href="{{route('applicant.applications.fail')}}">Fail Application</a></li>
+                            </ul>
                         </li>
 
                         <li>

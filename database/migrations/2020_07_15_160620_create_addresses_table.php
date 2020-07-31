@@ -26,6 +26,13 @@ class CreateAddressesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('addresses', function (Blueprint $table){
+            $table->id();
+            $table->unsignedInteger('region_id');
+            $table->unsignedInteger('district_id');
+            $table->timestamps();
+        });
+
     }
 
     /**
