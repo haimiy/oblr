@@ -31,7 +31,7 @@
 
 <body data-layout="detached" data-topbar="colored">
 
-<div class="container-fluid">
+<div class="container-fluid" id="app">
     <!-- Begin page -->
     <div id="layout-wrapper">
 
