@@ -41,21 +41,35 @@ class GovernmentOfficialController extends Controller
                 'application_id'=>$application->id,
                 'is_accepted'=>true,
             ]);
+            if($application->application_type == 'renewal'){
+                $license = $application->applicantDetail->license;
+                LicenseHistory::create([
+                    'license_number'=>$license->license_number,
+                    'date_of_issue'=>Carbon::now(),
+                    'expiry_date'=>Carbon::now()->addYear(1),
+                    'application_id'=>$id
+                ]);
+            }
+            else{
 
-            $license = License::create([
-                'license_number'=>$license_id,
-                'business_type_id' => $application->business_type_id,
-                'entity_id' => $application->entity_type_id,
-                'applicant_details_id' => $application->applicant_details_id,
-                'business_details_id' => $application->business_details_id
-            ]);
 
-            LicenseHistory::create([
-                'license_number'=>$license->license_number,
-                'date_of_issue'=>Carbon::now(),
-                'expiry_date'=>Carbon::now()->addYear(1),
-                'application_id'=>$id
-            ]);
+                $license = License::create([
+                    'license_number'=>$license_id,
+                    'business_type_id' => $application->business_type_id,
+                    'entity_id' => $application->entity_type_id,
+                    'applicant_details_id' => $application->applicant_details_id,
+                    'business_details_id' => $application->business_details_id
+                ]);
+
+                LicenseHistory::create([
+                    'license_number'=>$license->license_number,
+                    'date_of_issue'=>Carbon::now(),
+                    'expiry_date'=>Carbon::now()->addYear(1),
+                    'application_id'=>$id
+                ]);
+            }
+
+//
             return redirect(route('gvt.home'));
         }
         else if ($request->approve == "reject"){

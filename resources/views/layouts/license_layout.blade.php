@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <?php
-$path = 'images/document/coat_of_arms.png';
+$path = 'images/document/coat.png';
 $type = pathinfo($path, PATHINFO_EXTENSION);
 $data = file_get_contents($path);
 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
@@ -31,6 +31,10 @@ $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
             border-bottom: solid 5px #1a3fd5;
             border-left: solid 5px #1EB53A;
             border-top: solid 5px #1EB53A;
+            background-image: url({{ $base64 }});
+            background-repeat: no-repeat;
+            background-position: center;
+
         }
         .border-yellow{
             padding: 0;

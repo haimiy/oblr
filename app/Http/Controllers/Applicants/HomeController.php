@@ -23,7 +23,7 @@ class HomeController extends Controller
         $applications = Application::where('status',false)->where('applicant_id',\request()->user()->id)->get();
         $user_id = request()->user()->id;
         $licenses =
-            DB::select(DB::raw("select * from applications  right join applicant_details on applications.applicant_details_id=applicant_details.id right join licenses on licenses.applicant_details_id=applicant_details.id where applications.applicant_id=$user_id"));
+            DB::select("select * from licenses left join applicant_details on applicant_details.id=licenses.applicant_details_id where (select applications.applicant_id from applications where applications.applicant_details_id = applicant_details.id limit 1) = $user_id");
         return response()->json(['total_applicant_applications'=>count($applications),'total_applicant_licenses'=>count($licenses)]);
     }
 
