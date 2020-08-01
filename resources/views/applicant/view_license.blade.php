@@ -51,10 +51,21 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $license->first_name." ".$license->last_name }}</td>
-                                    <td>{{ $license->license_number }}</td>
+                                    <td>
+                                        {{ $license->license_number }}
+                                        @if ($license->expiry_date < Carbon\Carbon::now())
+                                            <span class="badge badge-danger">Exp</span>
+                                        @endif
+                                    </td>
                                     <td>{{ $license->date_of_issue }}</td>
                                     <td>{{ $license->expiry_date }}</td>
-                                    <td style="text-align:center"><a href="{{ route('applicant.licenses.download',['id'=>$license->license_number]) }}" type="button" class="btn btn-primary btn-sm waves-effect waves-light">Download</a></td>
+                                    <td style="text-align:center">
+                                        @if ($license->expiry_date < Carbon\Carbon::now())
+                                            <a href="{{ route('applicant.licenses.renew',['id'=>$license->license_number]) }}" type="button" class="btn btn-warning btn-sm waves-effect waves-light">Renew</a>
+                                        @else
+                                            <a href="{{ route('applicant.licenses.download',['id'=>$license->license_number]) }}" type="button" class="btn btn-primary btn-sm waves-effect waves-light">Download</a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
