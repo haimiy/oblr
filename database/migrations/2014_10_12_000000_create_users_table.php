@@ -51,7 +51,7 @@ class CreateUsersTable extends Migration
             $table->enum('gender', ['male', 'female']);
             $table->date('dob');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->bigInteger('created_by');
             $table->bigInteger('address_id');
             $table->rememberToken();

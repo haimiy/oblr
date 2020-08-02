@@ -28,8 +28,12 @@ class CreateAddressesTable extends Migration
 
         Schema::create('addresses', function (Blueprint $table){
             $table->id();
+            $table->bigInteger('addressable_id')->nullable();
+            $table->string('addressable_type')->nullable();
             $table->unsignedInteger('region_id');
             $table->unsignedInteger('district_id');
+            $table->string('address_line_1')->nullable();
+            $table->string('address_line_2')->nullable();
             $table->timestamps();
         });
 
