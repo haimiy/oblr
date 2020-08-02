@@ -21,8 +21,9 @@ class GovernmentOfficialController extends Controller
     public function create()
     {
         $regions = Regions::all();
-        $districts = District::all();
-        return view('admin.governmentofficial.create');
+        $districts = District::all('id', 'name')->toJson();
+//        return $districts;
+        return view('admin.governmentofficial.create', compact('regions', 'districts'));
     }
 
 

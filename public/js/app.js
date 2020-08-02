@@ -1938,6 +1938,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  props: {
+    title: String,
+    districts: Array
   }
 });
 
@@ -37540,7 +37544,7 @@ var render = function() {
       _c("div", { staticClass: "col-md-8" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _vm._v("Example Component")
+            _vm._v(_vm._s(_vm.title))
           ]),
           _vm._v(" "),
           _c(
@@ -37570,21 +37574,24 @@ var render = function() {
                 }
               }
             },
-            [
-              _c("option", [_vm._v("A")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("b")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("c")]),
-              _vm._v(" "),
-              _c("option", [_vm._v("d")])
-            ]
+            _vm._l(_vm.districts, function(district) {
+              return _c("option", [_vm._v(_vm._s(district))])
+            }),
+            0
           ),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
             _vm._v(
               "\n                    " +
                 _vm._s(_vm.selection) +
+                "\n                "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _vm._v(
+              "\n                    " +
+                _vm._s(_vm.districts) +
                 "\n                "
             )
           ])

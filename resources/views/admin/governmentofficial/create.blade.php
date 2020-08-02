@@ -157,7 +157,7 @@
                                 </div>
                             </div>
 
-                            <example-component></example-component>
+                            <example-component title="Title from Props" districts="{{ $districts }}"></example-component>
                         </div>
                     </div>
                 </div>
