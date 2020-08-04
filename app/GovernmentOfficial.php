@@ -22,7 +22,6 @@ class GovernmentOfficial extends Authenticatable
         'gender',
         'dob',
         'email',
-        'password',
         'created_by',
         'address_id'
     ];
@@ -44,4 +43,8 @@ class GovernmentOfficial extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function addresses(){
+        return $this->morphMany('App\Address', 'addressable');
+    }
 }

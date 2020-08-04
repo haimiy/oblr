@@ -35,18 +35,12 @@
                                 <div class="form-group">
                                     <label for="first_name">First name</label>
                                     <input type="text" class="form-control" id="first_name" placeholder="First name" value="{{ old('first_name') }}" required="" name="first_name">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="last_name">Last name</label>
                                     <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" value="{{ old('last_name') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
                             </div>
 
@@ -54,19 +48,13 @@
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="mobile">Mobile Address</label>
-                                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Mobile Address" value="{{ old('mobile') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
+                                    <label for="phone">Mobile Number</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Mobile Number" value="{{ old('phone') }}" required="">
                                 </div>
                             </div>
 
@@ -74,9 +62,16 @@
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
                                     <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth" value="{{ old('dob') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" class="form-control" id="gender">
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -86,18 +81,12 @@
                                 <div class="form-group">
                                     <label for="password">Password</label>
                                     <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ old('password') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="password_confirmation">Password Confirmation </label>
                                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Password Confirmation" value="{{ old('password_confirmation') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -116,47 +105,25 @@
                     <div class="card-body">
 
                         <h4 class="card-title">Address</h4>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="district">Region</label>
-                                    <input type="text" class="form-control" id="district" name="district" placeholder="Password" value="{{ old('district') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="region">District </label>
-                                    <input type="text" class="form-control" id="region" name="region" placeholder="Password Confirmation" value="{{ old('region') }}" required="">
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                        <regions-district v-bind:regions="{{ $regions }}" v-bind:districts="{{ $districts }}"></regions-district>
 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="district">Adress Line 1</label>
                                     <textarea class="form-control" id="district" name="address_line_1" placeholder="Address Line 1" value="{{ old('address_line_1') }}"></textarea>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="region">Adress Line 2 </label>
                                     <textarea class="form-control" id="region" name="address_line_2" placeholder="Address Line 2" value="{{ old('address_line_2') }}"></textarea>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
                                 </div>
                             </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
