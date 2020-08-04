@@ -73,6 +73,7 @@ Route::as('admin.')->prefix('admin')->group(function (){
 // Authenticated Admin Routes
 Route::namespace('Admin')->middleware('auth:web_admin')->as('admin.')->prefix('admin')->group(function (){
     Route::get('/', 'AdminController@index')->name('home');
+    Route::resource('governmentofficial', 'GovernmentOfficialController');
 
     Route::post('logout', 'LoginController@logout')->name('logout');
 });
