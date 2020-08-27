@@ -28,7 +28,7 @@
                     <div class="bg-login text-center">
                         <div class="bg-login-overlay"></div>
                         <div class="position-relative">
-                            <h5 class="text-white font-size-20">Welcome Back!</h5>
+                            <h5 class="text-white font-size-20">Welcome</h5>
                             <p class="text-white-50 mb-0">Sign in to continue to OBLR.</p>
                             <a href="/" class="logo logo-admin mt-4">
                                 <img src="{{ asset('images/default_black_small.png') }}" alt="" height="30">
@@ -69,7 +69,7 @@
 <script src="{{ asset('libs/node-waves/waves.min.js') }}"></script>
 
 <script src="{{ asset('js/app.js') }}"></script>
-
+@yield('js')
 </body>
 
 </html>

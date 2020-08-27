@@ -23,7 +23,8 @@ class GovernmentOfficial extends Authenticatable
         'dob',
         'email',
         'created_by',
-        'address_id'
+        'address_id',
+        'password'
     ];
 
     /**

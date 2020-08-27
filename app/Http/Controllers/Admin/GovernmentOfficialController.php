@@ -17,8 +17,8 @@ class GovernmentOfficialController extends Controller
     public function index()
     {
         $gvt = GovernmentOfficial::all();
-
-        return view('admin.governmentofficial.index', compact('gvt'));
+        $regions = Regions::all();
+        return view('admin.governmentofficial.index', ['gvt'=>$gvt,'regions'=>$regions ]);
     }
 
 
@@ -33,18 +33,11 @@ class GovernmentOfficialController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $address = Address::create($data);
+//        $address = Address::create($data);
 
-        $data['address_id'] = $address->id;
         $data['created_by'] = Auth::id();
+        $data['password']=Hash::make($data['password']);
         $gvtofficial = GovernmentOfficial::create($data);
-        $gvtofficial->password = Hash::make($data['password']);
-        $gvtofficial->save();
-
-        $address->addressable_id = $gvtofficial->id;
-        $address->addressable_type = 'App\GovernmentOfficial';
-
-        $address->save();
 
         $gvt = GovernmentOfficial::all();
 
@@ -72,5 +65,10 @@ class GovernmentOfficialController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function ajaxLoadRegionDistricts($region_id)
+    {
+        $district = District::where('region_id',$region_id)->get();
+        return response()->json(['districts'=>$district]);
     }
 }

@@ -99,4 +99,13 @@
             <p class="mb-0">By registering you agree to the Skote <a href="#" class="text-primary">Terms of Use</a></p>
         </div>
     </form>
+
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function (){
+            alert(1);
+        });
+    </script>
 @endsection

@@ -110,15 +110,26 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="district">Adress Line 1</label>
-                                    <textarea class="form-control" id="district" name="address_line_1" placeholder="Address Line 1" value="{{ old('address_line_1') }}"></textarea>
+                                <div class="form-group row">
+                                    <label for="region" class="col-lg-3 col-form-label">Region *</label>
+                                    <div class="col-lg-9">
+                                        <select id="region"  class="form-control" required>
+                                            <option value="">--Please Select Region--</option>
+                                                @foreach($regions as $region)
+                                                    <option value="{{ $region->id }}">{{ $region->name }}</option>
+                                                @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="region">Adress Line 2 </label>
-                                    <textarea class="form-control" id="region" name="address_line_2" placeholder="Address Line 2" value="{{ old('address_line_2') }}"></textarea>
+                                <div class="form-group row">
+                                    <label for="district" class="col-lg-3 col-form-label">District *</label>
+                                    <div class="col-lg-9">
+                                        <select id="district" name="address_id" class="form-control" required>
+                                            <option value="">--Please Select District--</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -150,4 +161,28 @@
     <script src="{{ asset('libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
     <!-- Datatable init js -->
     <script src="{{ asset('js/pages/datatables.init.js') }}"></script>
+    <script>
+        $('#region').change(function () {
+            var region_id = $('#region').val();
+            var district = $('#district');
+
+            if (region_id >= 0){
+                ajaxLoadRegionDistrict(region_id,district);
+            }
+            else{
+                district.html('<option value="">--Please Select District--</option>');
+            }
+        });
+        function ajaxLoadRegionDistrict(region_id,district) {
+            district.html('<option value="">--Please Select District--</option>');
+
+            $.get('/admin/ajax/regions/'+region_id+'/districts',function (data) {
+                var districts = data.districts;
+
+                for (var index in districts){
+                    district.append("<option value='"+districts[index].id+"'>"+districts[index].name+"</option>");
+                }
+            });
+        }
+    </script>
 @endsection

@@ -74,8 +74,14 @@ Route::as('admin.')->prefix('admin')->group(function (){
 Route::namespace('Admin')->middleware('auth:web_admin')->as('admin.')->prefix('admin')->group(function (){
     Route::get('/', 'AdminController@index')->name('home');
     Route::resource('governmentofficial', 'GovernmentOfficialController');
+    Route::get('address', 'AdminController@manageAddress')->name('address');
+    Route::post('address', 'AdminController@addAddress')->name('address');
 
     Route::post('logout', 'LoginController@logout')->name('logout');
+//    Route::post('logout', 'LoginController@logout')->name('logout');
+    Route::prefix('ajax')->group(function (){
+        Route::get('regions/{region_id}/districts','GovernmentOfficialController@ajaxLoadRegionDistricts' );
+    });
 });
 
 // Government Officials Guest Routes
@@ -95,6 +101,8 @@ Route::namespace('GovernmentOfficial')->middleware('auth:web_government_official
     Route::get('ajax/dashboard','GovernmentOfficialController@ajaxLoadDashboard');
 
     Route::post('logout', 'LoginController@logout')->name('logout');
+
+
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

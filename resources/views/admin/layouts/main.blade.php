@@ -266,8 +266,7 @@
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{route('admin.governmentofficial.create')}}">Add New</a></li>
                                 <li><a href="{{route('admin.governmentofficial.index')}}">All Gvt Officials</a></li>
-                                <li><a href="{{route('applicant.applications.pending')}}">Pending Application</a></li>
-                                <li><a href="{{route('applicant.applications.fail')}}">Fail Application</a></li>
+                                <li><a href="{{route('admin.address')}}">Manage Address</a></li>
                             </ul>
                         </li>
 
@@ -349,7 +348,7 @@
 
 @yield('page-js')
 
-<script src="{{asset('js/app.js')}}"></script>
+{{--<script src="{{asset('js/app.js')}}"></script>--}}
 
 </body>
 
