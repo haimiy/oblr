@@ -29,49 +29,86 @@
                     <div class="card-body">
 
                         <h4 class="card-title">User Information </h4>
-                        <p class="card-title-desc">Provide valuable, actionable feedback to your users with HTML5 form validation–available in all our supported browsers.</p>
+                        <p class="card-title-desc">Register a government official to start managing applications to different municipals.</p>
+                        <p>
+                            @if($errors->any())
+                                @foreach($errors->all() as $error)
+                                    {{ $error }}
+                                @endforeach
+                            @endif
+                        </p>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="first_name">First name</label>
-                                    <input type="text" class="form-control" id="first_name" placeholder="First name" value="{{ old('first_name') }}" required="" name="first_name">
+                                    <input type="text" class="form-control @error('first_name') is-invalid @enderror" id="first_name" placeholder="First name" value="{{ old('first_name') }}" name="first_name">
+                                    @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="last_name">Last name</label>
-                                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last name" value="{{ old('last_name') }}" required="">
+                                    <input type="text" class="form-control  @error('first_name') is-invalid @enderror" id="last_name" name="last_name" placeholder="Last name" value="{{ old('last_name') }}">
+                                    @error('last_name')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="email">Email Address</label>
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required="">
+                                    <input type="text" class="form-control  @error('first_name') is-invalid @enderror" id="email" name="email" placeholder="Email Address" value="{{ old('email') }}" required="">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="phone">Mobile Number</label>
-                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Mobile Number" value="{{ old('phone') }}" required="">
+                                    <input type="text" class="form-control  @error('first_name') is-invalid @enderror" id="phone" name="phone" placeholder="Mobile Number" value="{{ old('phone') }}" required="">
+                                    @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="dob">Date of Birth</label>
-                                    <input type="date" class="form-control" id="dob" name="dob" placeholder="Date of Birth" value="{{ old('dob') }}" required="">
+                                    <input type="date" class="form-control  @error('dob') is-invalid @enderror" id="dob" name="dob" placeholder="Date of Birth" value="{{ old('dob') }}" required="">
+                                    @error('dob')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="gender">Gender</label>
-                                    <select name="gender" class="form-control" id="gender">
+                                    <select name="gender" class="form-control  @error('first_name') is-invalid @enderror" id="gender">
                                         <option value="male">Male</option>
                                         <option value="female">Female</option>
                                     </select>
+                                    @error('gender')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -80,13 +117,23 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" value="{{ old('password') }}" required="">
+                                    <input type="password" class="form-control  @error('first_name') is-invalid @enderror" id="password" name="password" placeholder="Password" value="{{ old('password') }}" required="">
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="password_confirmation">Password Confirmation </label>
-                                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Password Confirmation" value="{{ old('password_confirmation') }}" required="">
+                                    <input type="password" class="form-control  @error('first_name') is-invalid @enderror" id="password_confirmation" name="password_confirmation" placeholder="Password Confirmation" value="{{ old('password_confirmation') }}" required="">
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -126,9 +173,14 @@
                                 <div class="form-group row">
                                     <label for="district" class="col-lg-3 col-form-label">District *</label>
                                     <div class="col-lg-9">
-                                        <select id="district" name="address_id" class="form-control" required>
+                                        <select id="district" name="address_id" class="form-control @error('first_name') is-invalid @enderror" required>
                                             <option value="">--Please Select District--</option>
                                         </select>
+                                        @error('address_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>

@@ -19,14 +19,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
-                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Enter first_name">
+                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Enter first_name" value="{{ old('first_name') }}">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="last_name">Last Name</label>
-                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Enter last_name">
+                    <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Enter last_name" value="{{ old('last_name') }}">
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
 
         <div class="form-group">
             <label for="phone">Phone number</label>
-            <input type="phone" name="phone" class="form-control" id="phone" placeholder="Enter phone number">
+            <input type="phone" name="phone" class="form-control" id="phone" placeholder="Enter phone number"  value="{{ old('phone') }}">
         </div>
 
         <div class="form-group">
@@ -70,7 +70,7 @@
 
                 <div class="col-md-6">
                     <label for="birthdate">Birthdate</label>
-                    <input name="dob" class="form-control" type="date" value="2019-08-19" id="birthdate">
+                    <input name="dob" class="form-control" type="date" value="{{ old('dob') }}" id="birthdate">
                 </div>
             </div>
         </div>

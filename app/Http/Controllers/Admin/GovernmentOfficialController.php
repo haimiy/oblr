@@ -7,6 +7,7 @@ use App\District;
 use App\GovernmentOfficial;
 use App\Http\Controllers\Controller;
 use App\Regions;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -32,8 +33,17 @@ class GovernmentOfficialController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:government_officials',
+            'gender' => 'required',
+            'dob' => 'required|date|before:'. Carbon::now()->subYear(18),
+            'password' => 'required|min:6|confirmed',
+            'address_id' => 'required|integer|exists:districts,id',
+        ]);
+
         $data = $request->all();
-//        $address = Address::create($data);
 
         $data['created_by'] = Auth::id();
         $data['password']=Hash::make($data['password']);

@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\DB;
 class GovernmentOfficialController extends Controller
 {
     public function index(){
-        $address_id = request()->user()->address_id;
-        $applications = DB::select("select applications.id,business_details.name,applicant_details.first_name,applicant_details.last_name,entity_types.name as entity_type_name,business_types.name as business_type_name,applications.status,applications.comment,applications.application_type from business_details  right join applications on applications.business_details_id = business_details.id left join applicant_details on applications.applicant_details_id=applicant_details.id left join entity_types on applications.entity_type_id =entity_types.id left join business_types on applications.business_type_id = business_types.id where business_details.address_id = $address_id and applications.status=false");
+        //$address_id = request()->user()->address_id;
+        $applications = DB::select("select applications.id,business_details.name,applicant_details.first_name,applicant_details.last_name,entity_types.name as entity_type_name,business_types.name as business_type_name,applications.status,applications.comment,applications.application_type from business_details  right join applications on applications.business_details_id = business_details.id left join applicant_details on applications.applicant_details_id=applicant_details.id left join entity_types on applications.entity_type_id =entity_types.id left join business_types on applications.business_type_id = business_types.id");
+//        $applications = DB::select("select applications.id,business_details.name,applicant_details.first_name,applicant_details.last_name,entity_types.name as entity_type_name,business_types.name as business_type_name,applications.status,applications.comment,applications.application_type from business_details  right join applications on applications.business_details_id = business_details.id left join applicant_details on applications.applicant_details_id=applicant_details.id left join entity_types on applications.entity_type_id =entity_types.id left join business_types on applications.business_type_id = business_types.id where business_details.address_id = $address_id and applications.status=false");
+//        return $applications;
         return view('government_official.home',['applications'=>$applications]);
     }
 
